@@ -1,23 +1,26 @@
-const canvas=document.getElementById("canvas");
-const ctx=canvas.getContext("2d");
+var canvas,ctx;
 var painting=false;
 
 window.addEventListener('load',buildpaper);
 
 function buildpaper(){
+    canvas=document.getElementById("canvas");
+    ctx=canvas.getContext("2d");
+
     canvas.height=window.innerHeight;
-    canvas.width=window.innerWidth;
+    canvas.width=window.innerWidth/2;
     ctx.lineWidth=10;
     ctx.lineCap='round';
 
-    canvas.addEventListener('mousedown',start);
-    canvas.addEventListener('mouseup',finish);
-    canvas.addEventListener('mousemove',draw);
+    window.addEventListener('mousedown',start);
+    window.addEventListener('mouseup',finish);
+    window.addEventListener('mousemove',draw);
 }
 
 function draw(e){
-    if(!painting)return;
-    
+    if(!painting)
+        return;
+
     ctx.lineTo(e.clientX,e.clientY);
     ctx.stroke();
     ctx.beginPath();//不知道為甚麼 加這行會比較滑順
@@ -26,6 +29,7 @@ function draw(e){
 
 function finish(){
     painting=false;
+    ctx.beginPath();
 }
 
 function start(e){
