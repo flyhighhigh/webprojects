@@ -1,0 +1,7 @@
+body{
+    margin: 0px;
+    /*邊緣位置*/
+}
+#canvas{
+    border: black 2px solid;
+}
