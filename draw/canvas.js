@@ -20,14 +20,19 @@ function draw(e){
     
     ctx.lineTo(e.clientX,e.clientY);
     ctx.stroke();
-    
+    ctx.beginPath();//不知道為甚麼 加這行會比較滑順
+    ctx.moveTo(e.clientX,e.clientY);
 }
 
 function finish(){
     painting=false;
-    ctx.beginPath();
 }
 
-function start(){
+function start(e){
     painting=true;
+    ctx.beginPath();
+    ctx.moveTo(e.clientX,e.clientY);
+    //為了畫點
+    ctx.lineTo(e.clientX+0.01,e.clientY);
+    ctx.stroke();
 }
