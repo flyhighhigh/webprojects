@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home page</title>
+    <!--script src="index.js"></script-->
+</head>
+<body>
+    <div class="container">
+        <table>
+            <tr>
+                <th>name</th>
+                <th>comment</th>
+            </tr>
+            <tbody>
+                {% for ppl in data %}
+                <tr>
+                    <td>{{ppl[0]}}</td>
+                    <td>{{ppl[1]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <div>
+        <form action="/" method="POST">
+            我也要留評論:<br>
+            暱稱:
+            <input name="name" type="text">
+            評論:
+            <input name="comment" type="text">
+            <input type="submit" value="送出">
+        </form>
+    </div>
+</body>
+</html>
