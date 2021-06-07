@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <title>劉冠麟 | 個人網站與留言板測試</title>
+    <style>
+        .oldcomment {
+            margin: 5px;
+            border-radius: 4px;
+            box-shadow: 5px 6px 6px 2px #e9ecef;
+        }
+
+        body {
+            background-color: #f7f6f6
+        }
+
+        .name_text {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container-fluid">
+        <h1>還沒想到的標題位</h1>
+    </div>
+
+    <hr>
+    <div id="main" class="container">
+        <div class="card oldcomment p-3">
+            <div class="container text-center">
+                <h1><strong>評論區在這!</strong></h1>
+            </div>
+            {% for ppl in data %}
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="p-2">
+                    <p class="font-weight-bold text-primary name_text"><strong>{{ppl[0]}} :</strong></p>
+                </div>
+                <div class="p-2 flex-grow-1">
+                    <p class="font-weight-bold name_text">{{ppl[1]}}</p>
+                </div>
+                <div class="p-2">
+                    <small>time</small>
+                </div>
+            </div>
+            {% endfor %}
+            <form class="d-flex justify-content-between align-items-center" action="/" method="POST">
+                <div class="p-2">
+                    <input name="name" type="text" class="form-control" placeholder="暱稱">
+                </div>
+                <div class="p-2 flex-grow-1">
+                    <input name="comment" type="text" class="form-control" placeholder="寫點評論">
+                </div>
+                <div class="p-2">
+                    <button type="submit" class="btn btn-primary">送出</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!--div class="container">
+        <form action="/" method="POST">
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">我也要留評論!</label>
+                <input name="name" type="text" class="form-control" placeholder="暱稱">
+            </div>
+            <div class="mb-3">
+                <textarea name="comment" type="text" class="form-control" rows="3" placeholder="寫點評論"></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-primary">送出</button>
+        </form>
+    </div-->
+
+    <!--這是比較醜的卡片-->
+    <!--hr>
+    <div class="container">
+        {% for ppl in data %}
+        <ul class="list-group list-group-horizontal oldcomment list-group-fluid">
+            <li class="list-group-item container"><strong>{{ppl[0]}}</strong> 說:</li>
+            <li class="list-group-item container">{{ppl[1]}}</li>
+        </ul>
+        {% endfor %}
+    </div-->
+    <!--這是表格-->
+    <!--div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">時間</th>
+                    <th scope="col">暱稱</th>
+                    <th scope="col">內容</th>
+                    <th scope="col">e</th>
+                    <th scope="col">e</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ppl in data %}
+                <tr>
+                    <td scope="row">time</td>
+                    <td><strong>{{ppl[0]}}</strong></td>
+                    <td colspan="3">{{ppl[1]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div-->
+</body>
+
+</html>

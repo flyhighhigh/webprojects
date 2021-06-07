@@ -14,7 +14,7 @@ cursor=db.cursor()
 def home():
     cursor.execute("select * from comments")
     data=cursor.fetchall()
-    return render_template("index.html",data=data)
+    return render_template("index_bootstrap.html",data=data)
 
 
 @app.route('/',methods=["POST"])
@@ -28,4 +28,4 @@ def newdata():
     db.commit()
     return redirect(url_for('home')) 
 
-app.run(port=3508)
+app.run(port=5000)
