@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
+    <link rel="icon" href="./favicon2.ico" type="image/x-icon">
     <title>劉冠麟 | 個人網站與留言板測試</title>
     <style>
         .oldcomment {
@@ -20,13 +21,62 @@
             border-radius: 4px;
             box-shadow: 5px 6px 6px 2px #e9ecef;
         }
-
+        hr.onphone{
+            margin: 0%;
+        }
         body {
             background-color: #f7f6f6
         }
-
-        .name_text {
+        .text {
             margin: 0 auto;
+        }
+        @media screen and (min-width: 64em) {
+            .main {
+                max-width: 64rem;
+                padding: 2rem 6rem;
+                margin: 0 auto;
+                font-size: 1.1rem
+            }
+            .mycomment{
+                display: flex!important;
+            }
+            .name{
+                border: 1px solid transparent
+            }
+            .onphone{display: none;}
+            .onpc{display: block;}
+            .commenttext{padding: .5rem!important;}
+        }
+        @media screen and (min-width: 42em) and (max-width: 64em) {
+            .main {
+                padding: 2rem 4rem;
+                font-size: 1.1rem
+            }
+            .mycomment{
+                display: block;
+            }
+            .name{
+                border: 1px solid transparent
+            }
+            .onphone{display: block;}
+            .onpc{display: none;}
+            .commenttext{padding: 0rem .5rem .5rem .5rem;}
+        }
+        @media screen and (max-width: 42em) {
+            .main {
+                padding: 2rem 1rem;
+                font-size: 1rem
+            }
+            .mycomment{
+                display: block;
+            }
+            .name{
+                border: 1px solid rgba(0,0,0,.125);
+                border-radius: .25rem;
+            }
+            .onphone{display: block;}
+            .onpc{display: none;}
+            .commenttext{padding: 0rem .5rem .5rem .5rem;}
         }
     </style>
 </head>
@@ -37,35 +87,35 @@
     <div class="container-fluid">
         <h1>還沒想到的標題位</h1>
     </div>
-
     <hr>
-    <div id="main" class="container">
+    <div class="container main">
         <div class="card oldcomment p-3">
             <div class="container text-center">
                 <h1><strong>評論區在這!</strong></h1>
             </div>
             {% for ppl in data %}
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="p-2">
-                    <p class="font-weight-bold text-primary name_text"><strong>{{ppl[0]}} :</strong></p>
+            <hr class="onphone">
+            <div class="mycomment justify-content-between align-items-center">
+                <div class="d-flex">
+                    <div class="p-2 font-weight-bold text-primary flex-fill text"><strong>{{ppl[0]}} :</strong></div>
+                    <div class="p-2 onphone"><small>{{ppl[2]}}</small></div>
                 </div>
-                <div class="p-2 flex-grow-1">
-                    <p class="font-weight-bold name_text">{{ppl[1]}}</p>
+                <div class="flex-fill commenttext">
+                    <p class="font-weight-bold text">{{ppl[1]}}</p>
                 </div>
-                <div class="p-2">
-                    <small>time</small>
+                <div class="p-2 onpc">
+                    <small>{{ppl[2]}}</small>
                 </div>
             </div>
+            
             {% endfor %}
-            <form class="d-flex justify-content-between align-items-center" action="/" method="POST">
+            <form class="mycomment justify-content-between align-items-center" action="/" method="POST">
                 <div class="p-2">
                     <input name="name" type="text" class="form-control" placeholder="暱稱">
                 </div>
-                <div class="p-2 flex-grow-1">
-                    <input name="comment" type="text" class="form-control" placeholder="寫點評論">
-                </div>
-                <div class="p-2">
-                    <button type="submit" class="btn btn-primary">送出</button>
+                <div class="d-flex flex-fill">
+                    <div class="p-2 flex-fill"><input name="comment" type="text" class="form-control" placeholder="寫點評論"></div>
+                    <div class="p-2"><button type="submit" class="btn btn-primary btn-block">送出</button></div>
                 </div>
             </form>
         </div>

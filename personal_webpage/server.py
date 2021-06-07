@@ -4,6 +4,7 @@ from flask import url_for
 from flask import render_template
 from flask import request
 import pymysql
+import time
 
 app=Flask(__name__)
 db=pymysql.connect(host="127.0.0.1",user="flyhighhigh",passwd="qqwweerr",db="db_practice")
@@ -21,11 +22,12 @@ def home():
 def newdata():
     name=request.form.get('name')
     text=request.form.get("comment")
+    timestr=time.strftime("%Y/%m/%d %H:%M",time.localtime())
     #輸進database
-    comm="insert into comments(name,text) values(%s,%s);"
-    val=(name,text)
+    comm="insert into comments(name,text,time) values(%s,%s,%s);"
+    val=(name,text,timestr)
     cursor.execute(comm,val)
     db.commit()
-    return redirect(url_for('home')) 
+    return redirect(url_for('home'))
 
 app.run(port=5000)
